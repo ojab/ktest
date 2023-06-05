@@ -78,6 +78,32 @@ esac
 #require-kernel-config NO_HZ
 #require-kernel-config HZ_100
 
+require-kernel-config EXPERT
+require-kernel-config MULTIUSER
+require-kernel-config FHANDLE
+require-kernel-config POSIX_TIMERS
+require-kernel-config PRINTK
+require-kernel-config BUG
+require-kernel-config DEBUG_BUGVERBOSE
+require-kernel-config BASE_FULL
+require-kernel-config EPOLL
+require-kernel-config SIGNALFD
+require-kernel-config TIMERFD
+require-kernel-config EVENTFD
+require-kernel-config SHMEM
+require-kernel-config AIO
+require-kernel-config ADVISE_SYSCALLS
+require-kernel-config MEMBARRIER
+require-kernel-config NAMESPACES
+require-kernel-config FUTEX
+require-kernel-config PROC_SYSCTL
+require-kernel-config RSEQ
+require-kernel-config VM_EVENT_COUNTERS
+
+require-kernel-config COREDUMP
+require-kernel-config CORE_DUMP_DEFAULT_ELF_HEADERS
+require-kernel-config ELF_CORE
+
 require-kernel-config LOCALVERSION_AUTO
 
 require-kernel-config HIGH_RES_TIMERS
@@ -93,10 +119,12 @@ require-kernel-config BINFMT_SCRIPT
 
 require-kernel-config COMPACTION	# virtfs doesn't do well without it
 
+require-kernel-config PROC_FS
 require-kernel-config PROC_KCORE	# XXX Needed?
 
 require-kernel-config TTY
 require-kernel-config VT
+require-kernel-config VT_CONSOLE
 
 # KVM guest support:
 if [[ $have_kvmguest = 1 ]]; then
@@ -123,6 +151,8 @@ if [[ $have_suspend = 1 ]]; then
     require-kernel-config PM_DEBUG
     require-kernel-append no_console_suspend
 fi
+
+require-kernel-config BLOCK
 
 case $ktest_storage_bus in
     virtio-scsi-pci)
@@ -182,9 +212,11 @@ require-kernel-config IP_MULTICAST
 require-kernel-config NETDEVICES
 
 # Filesystems:
+require-kernel-config FILE_LOCKING
 require-kernel-config TMPFS
 require-kernel-config INOTIFY_USER
 require-kernel-config CONFIGFS_FS	# systemd
+require-kernel-config AUTOFS4_FS
 
 # Root filesystem:
 require-kernel-config EXT4_FS
@@ -215,6 +247,7 @@ require-kernel-config PROFILING
 require-kernel-config JUMP_LABEL
 
 # iotop:
+require-kernel-config TASKSTATS
 require-kernel-config TASK_DELAY_ACCT
 require-kernel-config TASKSTATS
 require-kernel-config TASK_XACCT
